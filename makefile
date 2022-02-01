@@ -1,12 +1,18 @@
 CC = gcc
-CLFAGS = -Wall pkg-config allegro-5 allegro_font-5 --libs
-OBJ = ropeGame
-SOURCE = main.c
+CLFAGS = -Wall -c
+EFLAGS = # I don't know what this does?
+EOPTION = `pkg-config allegro-5 allegro_font-5 --libs --cflags`
+OBJDIR = obj
+SOURCE = main.c actors.c
+EXC = ropeGame
 
-all:
-	$(CC) $(CLFAGS) -o $(OBJ) $(SOURCE)
+all: $(EXC)
 
-exec:
-	./$(OBJ)
+exec: $(EXC)
+	./$(EXC)
+
 clean:
-	rm -rf $(OBJ)
+	rm -rf $(EXC) *.o
+
+$(EXC): 
+	gcc $(SOURCE) $(EFLAGS) -o $(EXC) $(EOPTION)
