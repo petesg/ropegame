@@ -1,3 +1,6 @@
+#ifndef ACTORS_H
+#define ACTORS_H
+
 #include <stdio.h>
 #include <stdint.h>
 
@@ -11,7 +14,10 @@ typedef union {
 
 typedef struct {
     position pos;
+    void (*initRoutine)(void);
     void (*serviceRoutine)(void);
 } actor;
 
 void initActors(void);
+
+#endif // ACTORS_H

@@ -8,12 +8,12 @@ int main(int argc, char *argv[]) {
     // initialization
     initActors();
 
-    printf("Hello World!");
+    printf("Hello World!\n");
 
     // game loop
     bool exit = true;
     while (!exit) {
-
+        
     }
 
     // cleanup
