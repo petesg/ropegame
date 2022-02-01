@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "allegro5.h": "c",
+        "allegro.h": "c",
+        "error.h": "c",
+        "events.h": "c"
+    }
+}
