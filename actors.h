@@ -14,6 +14,7 @@ typedef union {
 
 typedef struct {
     vector pos;
+    void *sprite; // TODO figure out how to store sprites
     void (*initRoutine)(void);
     void (*serviceRoutine)(void);
 } actor;
