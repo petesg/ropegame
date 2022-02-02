@@ -2,7 +2,7 @@
 #define ACTORS_H
 
 #include <stdio.h>
-#include <stdint.h>
+#include <stdint-gcc.h>
 
 typedef union {
     int32_t components[2];

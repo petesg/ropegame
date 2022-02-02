@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdint-gcc.h>
 
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_font.h>
@@ -16,14 +17,14 @@ int main()
     al_init();
     al_install_keyboard();
 
-    ALLEGRO_TIMER* timer = al_create_timer(1.0 / 30.0); // eventually unlock the fps
+    ALLEGRO_TIMER* renameTimer = al_create_timer(1.0 / 30.0); // eventually unlock the fps
     ALLEGRO_EVENT_QUEUE* queue = al_create_event_queue();
     ALLEGRO_DISPLAY* disp = al_create_display(1920, 1080);
     ALLEGRO_FONT* font = al_create_builtin_font();
 
     al_register_event_source(queue, al_get_keyboard_event_source());
     al_register_event_source(queue, al_get_display_event_source(disp));
-    al_register_event_source(queue, al_get_timer_event_source(timer));
+    al_register_event_source(queue, al_get_timer_event_source(renameTimer));
 
     bool redraw = true;
     ALLEGRO_EVENT event;
@@ -34,7 +35,7 @@ int main()
 
     // game loop
 
-    al_start_timer(timer);
+    al_start_timer(renameTimer);
     bool exit = false;
     while(!exit)
     {
@@ -43,7 +44,7 @@ int main()
         if(event.type == ALLEGRO_EVENT_TIMER)
             redraw = true;
         else if((event.type == ALLEGRO_EVENT_KEY_DOWN) || (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE))
-            break;
+            exit = true;
 
         if(redraw && al_is_event_queue_empty(queue))
         {
@@ -59,7 +60,7 @@ int main()
 
     al_destroy_font(font);
     al_destroy_display(disp);
-    al_destroy_timer(timer);
+    al_destroy_timer(renameTimer);
     al_destroy_event_queue(queue);
 
     return 0;
