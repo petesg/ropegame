@@ -13,20 +13,14 @@ int main()
 
     // allegro init
 
-    printf("Hello World!\n");
-
     al_init();
     al_install_keyboard();
 
-    ALLEGRO_TIMER* frameTimer;// = al_create_timer(1.0 / 30.0); // eventually unlock the fps
-    ALLEGRO_EVENT_QUEUE* queue;// = al_create_event_queue();
-    ALLEGRO_DISPLAY* disp;// = al_create_display(1920, 1080);
+    ALLEGRO_TIMER* frameTimer;
+    ALLEGRO_EVENT_QUEUE* queue;
+    ALLEGRO_DISPLAY* disp;
 
     bootup(queue, frameTimer, disp);
-
-    /*al_register_event_source(queue, al_get_keyboard_event_source());
-    al_register_event_source(queue, al_get_display_event_source(disp));
-    al_register_event_source(queue, al_get_timer_event_source(renameTimer));*/
 
     // other init
 
@@ -60,25 +54,6 @@ int main()
             draw();
             redraw = false;
         }
-
-        /*al_wait_for_event(queue, &event);
-
-        if(event.type == ALLEGRO_EVENT_TIMER)
-            redraw = true;
-        else if((event.type == ALLEGRO_EVENT_KEY_DOWN) || (event.type == ALLEGRO_EVENT_DISPLAY_CLOSE))
-            exit = true;
-
-        if(redraw && al_is_event_queue_empty(queue))
-        {
-            draw();
-            redraw = false;
-        }*/
-
-        // process input
-
-        // update logic
-
-        // draw
 
     }
 

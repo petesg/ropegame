@@ -1,11 +1,10 @@
-#include <allegro5/allegro5.h>
-#include <allegro5/allegro_font.h>
-
 #include "draw.h"
 
 ALLEGRO_FONT* smallFont;
 
 void initDraw(void) {
+
+    al_init_image_addon();
 
     smallFont = al_create_builtin_font();
 
