@@ -1,5 +1,5 @@
-make --dry-run --keep-going --print-directory
+make --dry-run --always-make --keep-going --print-directory
 make: Entering directory '/home/peter/Documents/random/ropegame'
-make: Nothing to be done for 'all'.
+gcc main.c actors.c draw.c errors.c  -o ropeGame `pkg-config allegro-5 allegro_font-5 allegro_image-5 --libs --cflags`
 make: Leaving directory '/home/peter/Documents/random/ropegame'
  

@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Feb  3 22:10:55 2022
+# Make data base, printed on Fri Feb  4 10:17:54 2022
 
 # Variables
 
@@ -49,12 +49,11 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 8:46552
+JOURNAL_STREAM = 8:45925
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'makefile', line 1)
 MAKEFILE_LIST :=  makefile
- 
 # automatic
 @F = $(notdir $@)
 # environment
@@ -70,7 +69,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 1512
+MANAGERPID = 1986
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # makefile (from 'makefile', line 3)
@@ -84,7 +83,7 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/peter-desktop:@/tmp/.ICE-unix/1741,unix/peter-desktop:/tmp/.ICE-unix/1741
+SESSION_MANAGER = local/peter-desktop:@/tmp/.ICE-unix/2213,unix/peter-desktop:/tmp/.ICE-unix/2213
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -94,7 +93,7 @@ VSCODE_LOG_STACK = false
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=220bc0d0-c9cc-4cdc-834d-6e70478166b8&iid=220bc0d0-c9cc-4cdc-834d-6e70478166b8&sid=220bc0d0-c9cc-4cdc-834d-6e70478166b8","uploadToServer":true}
 # environment
-INVOCATION_ID = 114fbe0a001342b1936f52affed18d41
+INVOCATION_ID = 4cd0e8ff5d424f69ab59e55893ea2a50
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -104,7 +103,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 3228
+GIO_LAUNCHED_DESKTOP_FILE_PID = 5130
 # automatic
 %F = $(notdir $%)
 # environment
@@ -118,7 +117,7 @@ PWD = /home/peter/Documents/random/ropegame
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1706
+SSH_AGENT_PID = 2177
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -156,7 +155,7 @@ CC = gcc
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-1e94b485-719e-4b2d-bf0f-dd6b5074b9b4.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-604c54b4-0d1e-42be-b152-b38f0ab92ef0.sock
 # makefile (from 'makefile', line 5)
 SOURCE = main.c actors.c draw.c errors.c
 # default
@@ -224,13 +223,12 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 3228
+VSCODE_PID = 5130
 # variable set hash-table stats:
 # Load=107/1024=10%, Rehash=0, Collisions=14/137=10%
 
 # Pattern-specific Variable Values
 
- 
 # No pattern-specific variable values.
 
 # Directories
@@ -248,7 +246,7 @@ VSCODE_PID = 3228
 # Not a target:
 actors.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-03 22:09:52.982016768
+#  Last modified 2022-02-03 23:15:26.377172699
 #  File has been updated.
 #  Successfully updated.
 
@@ -262,14 +260,14 @@ all: ropeGame main.c actors.c draw.c errors.c
 # Not a target:
 main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-03 22:08:22.300330747
+#  Last modified 2022-02-03 22:57:48.906164572
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 draw.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-03 20:47:02.206693473
+#  Last modified 2022-02-03 23:13:27.527014007
 #  File has been updated.
 #  Successfully updated.
 
@@ -287,6 +285,7 @@ makefile:
 #  File has not been updated.
 
 # Not a target:
+ 
 errors.c:
 #  Implicit rule search has been done.
 #  Last modified 2022-02-03 11:55:17.902965311
@@ -302,7 +301,7 @@ clean:
 
 ropeGame:
 #  Implicit rule search has not been done.
-#  Last modified 2022-02-03 22:10:51.515105235
+#  Last modified 2022-02-03 23:12:59.566506563
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 17):
@@ -328,8 +327,7 @@ exec: ropeGame main.c actors.c draw.c errors.c
 
 # strcache performance: lookups = 43 / hit rate = 46%
 # hash-table stats:
- 
 # Load=23/8192=0%, Rehash=0, Collisions=1/43=2%
-# Finished Make data base on Thu Feb  3 22:10:55 2022
+# Finished Make data base on Fri Feb  4 10:17:55 2022
 
  

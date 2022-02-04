@@ -35,7 +35,7 @@ int bootupAllegro(void) {
         return 0;
     }
 
-    disp = al_create_display(640, 480); // TODO fullscreen?  calculate display size?  adjustable?
+    disp = al_create_display(1920, 1080); // TODO fullscreen?  calculate display size?  adjustable?
     if(!disp) {
         printf("couldn't initialize display\n");
         return 0;

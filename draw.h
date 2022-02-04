@@ -14,6 +14,4 @@ void initDraw(void);
 void draw(void);
 void disposeDraw(void);
 
-//void drawGuy(struct actor self);
-
 #endif // DRAW_H

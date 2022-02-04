@@ -15,7 +15,7 @@ void initActors(void) {
 
 }
 
-actor* addActor(void (*newInitRoutine)(actor)) {
+actor* addActor(void (*newInitRoutine)(actor*)) {
     printf("adding actor to actors[%d]\n", numActors);
     actor* tempPtr = realloc(actors, sizeof(actor) * (numActors + 1));
     if (!tempPtr) {
@@ -28,29 +28,32 @@ actor* addActor(void (*newInitRoutine)(actor)) {
     // initialize new actor
     printf("actors: %p, newActor: %p, (actors+1: %p)\n", actors, newActor, actors + 1);
     newActor->initRoutine = newInitRoutine;
-    newActor->initRoutine(*newActor);
+    newActor->initRoutine(newActor);
     printf("initialized actor\n");
     return newActor; // doing it this way so there's no need to memcpy from a temp outside of addActor()
 }
 
-void initGuy(actor self) {
-    self.pos[0] = 500;
-    self.pos[1] = 500;
-    self.serviceRoutine = serviceGuy;
-    self.disposeRoutine = disposeGuy;
-    self.sprite = al_load_bitmap("assets/guy.png"); // TODO make this a spritesheet reference instead of bitmap here
-    if(!self.sprite) {
+// ‘void (*)(actor  )’ {aka ‘void (*)(struct ACTOR  )’} but argument is of type 
+// ‘void (*)(actor *)’ {aka ‘void (*)(struct ACTOR *)’
+
+void initGuy(actor* self) {
+    self->pos[0] = 200;
+    self->pos[1] = 200;
+    self->serviceRoutine = serviceGuy;
+    self->disposeRoutine = disposeGuy;
+    self->sprite = al_load_bitmap("assets/guy.png"); // TODO make this a spritesheet reference instead of bitmap here
+    if(!self->sprite) {
         // TODO complain
     }
-    printf("guy is initialized (%d, %d) - [%p]\n", self.pos[0], self.pos[1], &self);
+    printf("guy is initialized (%d, %d) - [%p]\n", self->pos[0], self->pos[1], self);
 }
 
-void serviceGuy(actor self) {
+void serviceGuy(actor* self) {
 
 }
 
-void disposeGuy(actor self) {
-    al_destroy_bitmap(self.sprite);
+void disposeGuy(actor* self) {
+    al_destroy_bitmap(self->sprite);
 }
 
 /*

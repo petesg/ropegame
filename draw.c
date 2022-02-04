@@ -22,8 +22,8 @@ void draw(void) {
     // draw actors
     for (uint16_t i = 0; i < numActors; i++) {
         actor* drawdActor = &actors[i];
-        //printf("numActors: %d, looking at actor: %d, actorx: %d\n", numActors, i, drawdActor->pos[0]);
-        //al_draw_bitmap(actors[i].sprite, actors[i].pos[0], actors[i].pos[1], 0);
+        printf("numActors: %d, looking at actor: %d, actorx: %d\n", numActors, i, drawdActor->pos[0]);
+        al_draw_bitmap(actors[i].sprite, actors[i].pos[0], actors[i].pos[1], 0);
     }
 
     al_flip_display();
