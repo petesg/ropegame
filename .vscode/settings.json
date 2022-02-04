@@ -4,6 +4,7 @@
         "allegro.h": "c",
         "error.h": "c",
         "events.h": "c",
-        "draw.h": "c"
+        "draw.h": "c",
+        "actors.h": "c"
     }
 }

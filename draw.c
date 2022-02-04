@@ -17,12 +17,14 @@ void draw(void) {
 
     char str[32];
     snprintf(str, 32, "Hello World! (%d)", d++);
-    //al_draw_text(smallFont, al_map_rgb(255, 255, 255), 0, 0, 0, str);
+    al_draw_text(smallFont, al_map_rgb(255, 255, 255), 0, 0, 0, str);
 
     // draw actors
-    /*for (uint16_t i = 0; i < numActors; i++) {
-        actors[i].drawRoutine(actors[i]);
-    }*/
+    for (uint16_t i = 0; i < numActors; i++) {
+        actor* drawdActor = &actors[i];
+        //printf("numActors: %d, looking at actor: %d, actorx: %d\n", numActors, i, drawdActor->pos[0]);
+        //al_draw_bitmap(actors[i].sprite, actors[i].pos[0], actors[i].pos[1], 0);
+    }
 
     al_flip_display();
 

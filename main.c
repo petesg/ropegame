@@ -7,36 +7,36 @@
 #include "actors.h"
 #include "draw.h"
 
-bool bootup(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* frameTimer, ALLEGRO_DISPLAY* disp) {
+ALLEGRO_TIMER* frameTimer;
+ALLEGRO_EVENT_QUEUE* queue;
+ALLEGRO_DISPLAY* disp;
 
-    // allocates basic engine resources and registers necessary Allegro mechanics
+int bootupAllegro(void) {
 
-    if(!al_init())
-    {
+    if(!al_init()) {
         printf("couldn't initialize allegro\n");
         return 0;
     }
-    if(!al_install_keyboard())
-    {
+
+    if(!al_install_keyboard()) {
         printf("couldn't initialize keyboard\n");
         return 0;
     }
 
     frameTimer = al_create_timer(1.0 / 30.0);
-    if(!frameTimer)
-    {
+    if(!frameTimer) {
         printf("couldn't initialize timer\n");
         return 0;
     }
+
     queue = al_create_event_queue();
-    if(!queue)
-    {
+    if(!queue) {
         printf("couldn't initialize queue\n");
         return 0;
     }
-    disp = al_create_display(1920, 1080); // TODO figure out fullscreen?
-    if(!disp)
-    {
+
+    disp = al_create_display(640, 480); // TODO fullscreen?  calculate display size?  adjustable?
+    if(!disp) {
         printf("couldn't initialize display\n");
         return 0;
     }
@@ -48,14 +48,65 @@ bool bootup(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* frameTimer, ALLEGRO_DISPL
     return 1;
 }
 
+void cleanupAllegro(void) {
+    al_destroy_display(disp);
+    al_destroy_timer(frameTimer);
+    al_destroy_event_queue(queue);
+}
+
 int main()
 {
 
+    if (!bootupAllegro())
+        return 1;
+    initDraw();
+    initActors();
+
+    bool done = false;
+    bool redraw = true;
+    ALLEGRO_EVENT event;
+
+    al_start_timer(frameTimer);
+    while(!done) {
+        al_wait_for_event(queue, &event);
+
+        // TODO this should be in a while(event queue is not empty) loop
+        switch(event.type) {
+            case ALLEGRO_EVENT_TIMER:
+                // game logic goes here.
+                redraw = true;
+                break;
+
+            case ALLEGRO_EVENT_KEY_DOWN:
+            case ALLEGRO_EVENT_DISPLAY_CLOSE:
+                done = true;
+                break;
+        }
+
+        if(redraw && al_is_event_queue_empty(queue)) {
+            /*al_clear_to_color(al_map_rgb(0, 0, 0));
+            //al_draw_text(font, al_map_rgb(255, 255, 255), 0, 0, 0, "Hello world!");
+            al_flip_display();*/
+            draw();
+            redraw = false;
+        }
+    }
+
+    disposeDraw();
+    disposeActors();
+    cleanupAllegro();
+
+    return 0;
+
+/*
     // allegro init
 
-    printf("starting allegro NEW TEXT\n");
+    printf("starting allegro\n");
 
     al_init();
+
+    printf("HERE ONE/n");
+    
     al_install_keyboard();
 
     ALLEGRO_TIMER* frameTimer;
@@ -64,7 +115,7 @@ int main()
     printf("booting up");
 
     bootup(queue, frameTimer, disp);
-/*
+
 
     printf("some shit gone done fucky");
 
@@ -109,10 +160,10 @@ int main()
     // cleanup
 
     disposeDraw();
-*/
+
 
     al_destroy_display(disp);
     al_destroy_timer(frameTimer);
     al_destroy_event_queue(queue);
-    return 0;
+    return 0;*/
 }

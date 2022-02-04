@@ -8,39 +8,27 @@
 #include "errors.h"
 #include "draw.h"
 
-/*typedef union {
-    int32_t components[2];
-    struct {
-        int32_t x;
-        int32_t y;
-    } coords;
-} vector;
+typedef struct ACTOR actor;
 
-typedef struct {
-    vector pos;
+struct ACTOR {
+    uint32_t pos[2];
+    double v[2];
     ALLEGRO_BITMAP* sprite; // TODO figure out how to store sprites
-    void (*initRoutine)(struct actor);
-    void (*serviceRoutine)(struct actor);
-    void (*drawRoutine)(struct actor); // is this necessary?
-    void (*disposeRoutine)(struct actor);
-} actor;
+    void (*initRoutine)(actor);
+    void (*serviceRoutine)(actor);
+    void (*disposeRoutine)(actor); // TODO maybe make these take pointers
+};
 
-typedef void (*actorMember)(actor);
-
-typedef struct {
-    int x;
-    void (*func)(bullshit);
-} bullshit;
-void bsfunc(bullshit bs);*/
-
-extern struct actor* actors;
-extern uint16_t numActors;
+extern actor* actors;
+extern int numActors;
 
 void initActors(void);
-struct actor* addActor(void);
+actor* addActor(void (*newInitRoutine)(actor));
 
-void initGuy(struct actor self);
-void serviceGuy(struct actor self);
-void disposeGuy(struct actor self);
+void disposeActors(void);
+
+void initGuy(actor self);
+void serviceGuy(actor self);
+void disposeGuy(actor self);
 
 #endif // ACTORS_H
