@@ -3,70 +3,9 @@
 #include <stdint-gcc.h>
 
 #include <allegro5/allegro5.h>
-#include <allegro5/allegro_font.h>
 
 #include "actors.h"
 #include "draw.h"
-
-int main()
-{
-
-    // allegro init
-
-    al_init();
-    al_install_keyboard();
-
-    ALLEGRO_TIMER* frameTimer;
-    ALLEGRO_EVENT_QUEUE* queue;
-    ALLEGRO_DISPLAY* disp;
-
-    bootup(queue, frameTimer, disp);
-
-    // other init
-
-    initActors();
-
-    // game loop
-
-    bool redraw = true;
-    ALLEGRO_EVENT event;
-    al_start_timer(frameTimer);
-    bool exit = false;
-    while(!exit)
-    {
-        al_wait_for_event(queue, &event);
-
-        switch(event.type)
-        {
-            case ALLEGRO_EVENT_TIMER:
-                // game logic goes here.
-                redraw = true;
-                break;
-
-            case ALLEGRO_EVENT_KEY_DOWN:
-            case ALLEGRO_EVENT_DISPLAY_CLOSE:
-                exit = true;
-                break;
-        }
-
-        if(redraw && al_is_event_queue_empty(queue))
-        {
-            draw();
-            redraw = false;
-        }
-
-    }
-
-    // cleanup
-
-    disposeDraw();
-
-    al_destroy_display(disp);
-    al_destroy_timer(frameTimer);
-    al_destroy_event_queue(queue);
-
-    return 0;
-}
 
 bool bootup(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* frameTimer, ALLEGRO_DISPLAY* disp) {
 
@@ -107,4 +46,73 @@ bool bootup(ALLEGRO_EVENT_QUEUE* queue, ALLEGRO_TIMER* frameTimer, ALLEGRO_DISPL
     al_register_event_source(queue, al_get_timer_event_source(frameTimer));
 
     return 1;
+}
+
+int main()
+{
+
+    // allegro init
+
+    printf("starting allegro NEW TEXT\n");
+
+    al_init();
+    al_install_keyboard();
+
+    ALLEGRO_TIMER* frameTimer;
+    ALLEGRO_EVENT_QUEUE* queue;
+    ALLEGRO_DISPLAY* disp;
+    printf("booting up");
+
+    bootup(queue, frameTimer, disp);
+/*
+
+    printf("some shit gone done fucky");
+
+    // engine init
+
+    //initActors();
+    initDraw();
+
+    // game loop
+
+    printf("starting main loop");
+
+    bool redraw = true;
+    bool exit = false;
+    ALLEGRO_EVENT event;
+    al_start_timer(frameTimer);
+    while(!exit)
+    {
+        al_wait_for_event(queue, &event);
+
+        switch(event.type)
+        {
+            case ALLEGRO_EVENT_TIMER:
+                // game logic goes here.
+                redraw = true;
+                break;
+
+            case ALLEGRO_EVENT_KEY_DOWN:
+            case ALLEGRO_EVENT_DISPLAY_CLOSE:
+                exit = true;
+                break;
+        }
+
+        if(redraw && al_is_event_queue_empty(queue))
+        {
+            draw();
+            redraw = false;
+        }
+
+    }
+
+    // cleanup
+
+    disposeDraw();
+*/
+
+    al_destroy_display(disp);
+    al_destroy_timer(frameTimer);
+    al_destroy_event_queue(queue);
+    return 0;
 }
