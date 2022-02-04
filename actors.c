@@ -1,8 +1,8 @@
 #include "actors.h"
 
-actor* actors;      // dynamic array of all actors in game
-int numActors = 0; // size of actors array
-actor* tempActor;    // dummy memory block for setting up new actors or defaulting to when out of memory
+Actor* actors;      // dynamic array of all actors in game
+int numActors = 0;  // size of actors array
+Actor* tempActor;   // dummy memory block for setting up new actors or defaulting to when out of memory
 
 void initActors(void) {
 
@@ -15,16 +15,16 @@ void initActors(void) {
 
 }
 
-actor* addActor(void (*newInitRoutine)(actor*)) {
+Actor* addActor(void (*newInitRoutine)(Actor*)) {
     printf("adding actor to actors[%d]\n", numActors);
-    actor* tempPtr = realloc(actors, sizeof(actor) * (numActors + 1));
+    Actor* tempPtr = realloc(actors, sizeof(Actor) * (numActors + 1));
     if (!tempPtr) {
         errorOutOfMemory();
         return tempActor; // TODO figure out how I really want to handle this
     }
     actors = tempPtr;
     printf("array resized (numActors is still [%d])\n", numActors);
-    actor* newActor = actors + numActors++;
+    Actor* newActor = actors + numActors++;
     // initialize new actor
     printf("actors: %p, newActor: %p, (actors+1: %p)\n", actors, newActor, actors + 1);
     newActor->initRoutine = newInitRoutine;
@@ -36,23 +36,23 @@ actor* addActor(void (*newInitRoutine)(actor*)) {
 // ‘void (*)(actor  )’ {aka ‘void (*)(struct ACTOR  )’} but argument is of type 
 // ‘void (*)(actor *)’ {aka ‘void (*)(struct ACTOR *)’
 
-void initGuy(actor* self) {
+void initGuy(Actor* self) {
     self->pos[0] = 200;
     self->pos[1] = 200;
     self->serviceRoutine = serviceGuy;
     self->disposeRoutine = disposeGuy;
-    self->sprite = al_load_bitmap("assets/guy.png"); // TODO make this a spritesheet reference instead of bitmap here
+    self->sprite = getBitmap(ASSET_SH_GUY);//al_load_bitmap("assets/guy.png"); // TODO make this a spritesheet reference instead of bitmap here
     if(!self->sprite) {
         // TODO complain
     }
     printf("guy is initialized (%d, %d) - [%p]\n", self->pos[0], self->pos[1], self);
 }
 
-void serviceGuy(actor* self) {
+void serviceGuy(Actor* self) {
 
 }
 
-void disposeGuy(actor* self) {
+void disposeGuy(Actor* self) {
     al_destroy_bitmap(self->sprite);
 }
 
