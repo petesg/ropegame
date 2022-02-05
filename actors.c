@@ -11,7 +11,8 @@ void initActors(void) {
     // add special actors here
     addActor(initGuy);
     tempActor = addActor(initGuy);
-    tempActor->pos[0] = 1000;
+    tempActor->pos[0] = 150;
+    tempActor->pos[1] = 80;
     tempActor->sprite.tile = 44;
 
     printf("added guy (%d, %d) - %p\n", actors[0].pos[0], actors[0].pos[1], &actors[0]);
@@ -54,8 +55,8 @@ void disposeActors(void) {
 
 void initGuy(Actor* self) {
     // start position
-    self->pos[0] = 200;
-    self->pos[1] = 200;
+    self->pos[0] = 100;
+    self->pos[1] = 100;
     
     // handling routines
     self->serviceRoutine = serviceGuy;
