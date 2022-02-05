@@ -13,7 +13,7 @@ typedef struct {
     uint16_t tileWidth;
     uint16_t tileHeight;
     uint8_t horTiles;
-    uint16_t frameIndex;
+    uint16_t tile;
 } Sprite;
 
 struct ACTOR {
@@ -21,7 +21,6 @@ struct ACTOR {
     double v[2];
     //ALLEGRO_BITMAP* sprite; // TODO figure out how to store sprites
     Sprite sprite;
-    uint8_t frameIndex;
     void (*initRoutine)(Actor*);
     void (*serviceRoutine)(Actor*);
     void (*disposeRoutine)(Actor*);

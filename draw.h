@@ -25,6 +25,8 @@ void initDraw(void);
 void draw(void);
 void disposeDraw(void);
 
+extern ALLEGRO_DISPLAY* disp;
+
 ALLEGRO_BITMAP* getBitmap(const char* fname);
 
 #endif // DRAW_H

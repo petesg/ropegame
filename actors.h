@@ -14,7 +14,7 @@ extern int numActors;
 
 void initActors(void);
 Actor* addActor(void (*newInitRoutine)(Actor*));
-
+void serviceActors(void);
 void disposeActors(void);
 
 void initGuy(Actor* self);

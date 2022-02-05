@@ -30,7 +30,12 @@ void draw(void) {
     for (uint16_t i = 0; i < numActors; i++) {
         Actor* drawdActor = &actors[i];
         //printf("numActors: %d, looking at actor: %d, actorx: %d\n", numActors, i, drawdActor->pos[0]);
-        al_draw_bitmap(actors[i].sprite.sheet, actors[i].pos[0], actors[i].pos[1], 0);
+        Sprite* s = &actors[i].sprite;
+        al_draw_bitmap( // TODO measure if this is the fastest way to do this or should the sub bitmap only be calculated when frame changes?
+            al_create_sub_bitmap(s->sheet, s->tileWidth * (s->tile % s->horTiles), s->tileHeight * (s->tile / s->horTiles), s->tileWidth, s->tileHeight),
+            actors[i].pos[0],
+            actors[i].pos[1],
+            0);
     }
 
     al_flip_display();

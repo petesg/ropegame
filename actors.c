@@ -10,9 +10,12 @@ void initActors(void) {
 
     // add special actors here
     addActor(initGuy);
-    addActor(initGuy)->pos[0] = 1000;
+    tempActor = addActor(initGuy);
+    tempActor->pos[0] = 1000;
+    tempActor->sprite.tile = 44;
 
     printf("added guy (%d, %d) - %p\n", actors[0].pos[0], actors[0].pos[1], &actors[0]);
+    printf("second guy tile is %d\n", actors[1].sprite.tile);
 
 }
 
@@ -34,15 +37,40 @@ Actor* addActor(void (*newInitRoutine)(Actor*)) {
     return newActor; // doing it this way so there's no need to memcpy from a temp outside of addActor()
 }
 
+void serviceActors(void) {
+
+}
+
+void disposeActors(void) {
+    // TODO free() some stuff
+}
+
+
+// 
+// SPECIFIC ACTOR ROUTINES
+//
+////////////////////////////
+
+
 void initGuy(Actor* self) {
+    // start position
     self->pos[0] = 200;
     self->pos[1] = 200;
+    
+    // handling routines
     self->serviceRoutine = serviceGuy;
     self->disposeRoutine = disposeGuy;
-    self->sprite.sheet = getBitmap(ASSET_SH_GUY);//al_load_bitmap("assets/guy.png"); // TODO make this a spritesheet reference instead of bitmap here
+    
+    // setup sprite
+    self->sprite.sheet = getBitmap(ASSET_SH_GUY);
     if(!self->sprite.sheet) {
         // TODO complain
     }
+    self->sprite.horTiles = 8;
+    self->sprite.tileWidth = 50;
+    self->sprite.tileHeight = 37;
+    self->sprite.tile = 0;
+
     printf("guy is initialized (%d, %d) - [%p]\n", self->pos[0], self->pos[1], self);
 }
 
@@ -79,7 +107,3 @@ void disposeGuy(struct actor self) {
     al_destroy_bitmap(self.sprite);
 }
 */
-
-void disposeActors(void) {
-    // TODO free() some stuff
-}
