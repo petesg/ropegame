@@ -9,7 +9,8 @@ void initActors(void) {
     printf("actors init\n");
 
     // add special actors here
-    tempActor = addActor(initGuy);
+    addActor(initGuy);
+    addActor(initGuy)->pos[0] = 1000;
 
     printf("added guy (%d, %d) - %p\n", actors[0].pos[0], actors[0].pos[1], &actors[0]);
 
@@ -33,16 +34,13 @@ Actor* addActor(void (*newInitRoutine)(Actor*)) {
     return newActor; // doing it this way so there's no need to memcpy from a temp outside of addActor()
 }
 
-// ‘void (*)(actor  )’ {aka ‘void (*)(struct ACTOR  )’} but argument is of type 
-// ‘void (*)(actor *)’ {aka ‘void (*)(struct ACTOR *)’
-
 void initGuy(Actor* self) {
     self->pos[0] = 200;
     self->pos[1] = 200;
     self->serviceRoutine = serviceGuy;
     self->disposeRoutine = disposeGuy;
-    self->sprite = getBitmap(ASSET_SH_GUY);//al_load_bitmap("assets/guy.png"); // TODO make this a spritesheet reference instead of bitmap here
-    if(!self->sprite) {
+    self->sprite.sheet = getBitmap(ASSET_SH_GUY);//al_load_bitmap("assets/guy.png"); // TODO make this a spritesheet reference instead of bitmap here
+    if(!self->sprite.sheet) {
         // TODO complain
     }
     printf("guy is initialized (%d, %d) - [%p]\n", self->pos[0], self->pos[1], self);
@@ -53,7 +51,7 @@ void serviceGuy(Actor* self) {
 }
 
 void disposeGuy(Actor* self) {
-    al_destroy_bitmap(self->sprite);
+    //al_destroy_bitmap(self->sprite.sheet); // TODO this needs to get done by the draw dispose
 }
 
 /*

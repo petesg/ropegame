@@ -8,17 +8,18 @@
 #include <allegro5/allegro_image.h>
 #include <allegro5/allegro_font.h>
 
+#include "structs.h"
 #include "errors.h"
 #include "actors.h"
 #include "assets.h"
 
-typedef struct {
-    ALLEGRO_BITMAP* spriteSheet;
+/*typedef struct {
+    ALLEGRO_BITMAP* sheet;
     uint16_t tileWidth;
     uint16_t tileHeight;
     uint8_t horTiles;
     uint16_t frameIndex;
-} Sprite;
+} Sprite;*/
 
 void initDraw(void);
 void draw(void);

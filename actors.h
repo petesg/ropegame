@@ -5,20 +5,9 @@
 #include <stdlib.h>
 #include <stdint-gcc.h>
 
+#include "structs.h"
 #include "errors.h"
 #include "draw.h"
-
-typedef struct ACTOR Actor;
-
-struct ACTOR {
-    uint32_t pos[2];
-    double v[2];
-    ALLEGRO_BITMAP* sprite; // TODO figure out how to store sprites
-    uint8_t frameIndex;
-    void (*initRoutine)(Actor*);
-    void (*serviceRoutine)(Actor*);
-    void (*disposeRoutine)(Actor*);
-};
 
 extern Actor* actors;
 extern int numActors;

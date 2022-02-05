@@ -2,7 +2,7 @@
 
 ALLEGRO_FONT* smallFont;
 
-struct LoadedBitmap {
+struct LoadedBitmap { // dict of loaded bitmaps
     ALLEGRO_BITMAP* bitmap;
     const char* fname;
 } *loadedBitmaps;
@@ -29,8 +29,8 @@ void draw(void) {
     // draw actors
     for (uint16_t i = 0; i < numActors; i++) {
         Actor* drawdActor = &actors[i];
-        printf("numActors: %d, looking at actor: %d, actorx: %d\n", numActors, i, drawdActor->pos[0]);
-        al_draw_bitmap(actors[i].sprite, actors[i].pos[0], actors[i].pos[1], 0);
+        //printf("numActors: %d, looking at actor: %d, actorx: %d\n", numActors, i, drawdActor->pos[0]);
+        al_draw_bitmap(actors[i].sprite.sheet, actors[i].pos[0], actors[i].pos[1], 0);
     }
 
     al_flip_display();
@@ -50,8 +50,10 @@ void disposeDraw(void) {
 ALLEGRO_BITMAP* getBitmap(const char* fname) {
     // check if we've loaded the bitmap already
     for (uint16_t i = 0; i < numLoadedBitmaps; i++) {
-        if (!strcmp(loadedBitmaps[i].fname, fname))
+        if (!strcmp(loadedBitmaps[i].fname, fname)) {
+            printf("already loaded at [%d]\n", i);
             return loadedBitmaps[i].bitmap;
+        }
     }
 
     // bitmap hasn't already been loaded, do it now
