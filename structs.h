@@ -6,6 +6,7 @@
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_image.h>
 
+// it wouldn't compile without this since there are members of Actor which take an Actor argument
 typedef struct ACTOR Actor;
 
 typedef struct {
@@ -28,5 +29,10 @@ struct ACTOR {
     void (*serviceRoutine)(Actor*);
     void (*disposeRoutine)(Actor*);
 };
+
+typedef struct {
+    uint32_t p1[2];
+    uint32_t p2[2];
+} Collider;
 
 #endif // STRUCTS_H
