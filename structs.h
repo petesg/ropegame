@@ -10,7 +10,7 @@ typedef struct ACTOR Actor;
 
 typedef struct {
     ALLEGRO_BITMAP* sheet;
-    uint16_t tileWidth;
+    uint16_t tileWidth; // TODO add an offset?
     uint16_t tileHeight;
     uint8_t horTiles;
     uint16_t tile;
@@ -19,7 +19,6 @@ typedef struct {
 struct ACTOR {
     uint32_t pos[2];
     double v[2];
-    //ALLEGRO_BITMAP* sprite; // TODO figure out how to store sprites
     Sprite sprite;
     void (*initRoutine)(Actor*);
     void (*serviceRoutine)(Actor*);

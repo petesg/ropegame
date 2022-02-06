@@ -31,11 +31,10 @@ void draw(void) {
         Actor* drawdActor = &actors[i];
         //printf("numActors: %d, looking at actor: %d, actorx: %d\n", numActors, i, drawdActor->pos[0]);
         Sprite* s = &actors[i].sprite;
-        al_draw_bitmap( // TODO measure if this is the fastest way to do this or should the sub bitmap only be calculated when frame changes?
-            al_create_sub_bitmap(s->sheet, s->tileWidth * (s->tile % s->horTiles), s->tileHeight * (s->tile / s->horTiles), s->tileWidth, s->tileHeight),
-            actors[i].pos[0],
-            actors[i].pos[1],
-            0);
+        ALLEGRO_BITMAP* tile = al_create_sub_bitmap(s->sheet, s->tileWidth * (s->tile % s->horTiles), s->tileHeight * (s->tile / s->horTiles), s->tileWidth, s->tileHeight);
+        // TODO measure if this is the fastest way to do this or should the sub bitmap only be calculated when frame changes?
+        al_draw_bitmap(tile, actors[i].pos[0], actors[i].pos[1], 0);
+        al_destroy_bitmap(tile);
     }
 
     al_flip_display();

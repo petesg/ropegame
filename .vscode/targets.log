@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Feb  5 09:43:43 2022
+# Make data base, printed on Sun Feb  6 08:57:07 2022
 
 # Variables
 
@@ -49,7 +49,7 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 8:38685
+JOURNAL_STREAM = 8:41883
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'makefile', line 1)
@@ -69,7 +69,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 1824
+MANAGERPID = 1588
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # makefile (from 'makefile', line 3)
@@ -83,7 +83,7 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/peter-desktop:@/tmp/.ICE-unix/2053,unix/peter-desktop:/tmp/.ICE-unix/2053
+SESSION_MANAGER = local/peter-desktop:@/tmp/.ICE-unix/1815,unix/peter-desktop:/tmp/.ICE-unix/1815
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -93,7 +93,7 @@ VSCODE_LOG_STACK = false
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=220bc0d0-c9cc-4cdc-834d-6e70478166b8&iid=220bc0d0-c9cc-4cdc-834d-6e70478166b8&sid=220bc0d0-c9cc-4cdc-834d-6e70478166b8","uploadToServer":true}
 # environment
-INVOCATION_ID = ac3143cb33344574a394b3e870e3d05f
+INVOCATION_ID = 18f0ebd2489b449486203379881dd47b
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -103,7 +103,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2630
+GIO_LAUNCHED_DESKTOP_FILE_PID = 4286
 # automatic
 %F = $(notdir $%)
 # environment
@@ -117,7 +117,7 @@ PWD = /home/peter/Documents/random/ropegame
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2017
+SSH_AGENT_PID = 1780
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -155,7 +155,7 @@ CC = gcc
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-84e2bd70-9787-4fa6-9bb7-94bd2d7a9fca.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-9f5cb546-4781-4d39-a9e7-3d4e152f5920.sock
 # makefile (from 'makefile', line 5)
 SOURCE = main.c actors.c draw.c errors.c
 # default
@@ -223,7 +223,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 2630
+VSCODE_PID = 4286
 # variable set hash-table stats:
 # Load=107/1024=10%, Rehash=0, Collisions=14/137=10%
 
@@ -233,9 +233,9 @@ VSCODE_PID = 2630
 
 # Directories
 
-# . (device 2069, inode 4588277): 17 files, no impossibilities.
+# . (device 2069, inode 4588277): 18 files, no impossibilities.
 
-# 17 files, no impossibilities in 1 directories.
+# 18 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -246,7 +246,7 @@ VSCODE_PID = 2630
 # Not a target:
 actors.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-04 15:08:57.204122405
+#  Last modified 2022-02-05 12:18:55.584364702
 #  File has been updated.
 #  Successfully updated.
 
@@ -260,14 +260,14 @@ all: ropeGame main.c actors.c draw.c errors.c
 # Not a target:
 main.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-04 10:56:34.165497002
+#  Last modified 2022-02-05 12:20:00.893517737
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 draw.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-04 15:37:49.567181487
+#  Last modified 2022-02-05 12:17:04.126392652
 #  File has been updated.
 #  Successfully updated.
 
@@ -287,7 +287,6 @@ makefile:
 # Not a target:
 errors.c:
 #  Implicit rule search has been done.
- 
 #  Last modified 2022-02-03 11:55:17.902965311
 #  File has been updated.
 #  Successfully updated.
@@ -301,7 +300,7 @@ clean:
 
 ropeGame:
 #  Implicit rule search has not been done.
-#  Last modified 2022-02-04 15:09:02.924225675
+#  Last modified 2022-02-05 12:19:48.229294281
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 17):
@@ -322,12 +321,12 @@ exec: ropeGame main.c actors.c draw.c errors.c
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 24 / storage = 190 B / avg = 7 B
-# current buf: size = 8162 B / used = 190 B / count = 24 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 25 / storage = 200 B / avg = 8 B
+# current buf: size = 8162 B / used = 200 B / count = 25 / avg = 8 B
 
-# strcache performance: lookups = 44 / hit rate = 45%
+# strcache performance: lookups = 45 / hit rate = 44%
 # hash-table stats:
-# Load=24/8192=0%, Rehash=0, Collisions=1/44=2%
-# Finished Make data base on Sat Feb  5 09:43:43 2022
+# Load=25/8192=0%, Rehash=0, Collisions=1/45=2%
+# Finished Make data base on Sun Feb  6 08:57:07 2022
 
  
