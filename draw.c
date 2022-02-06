@@ -74,3 +74,12 @@ ALLEGRO_BITMAP* getBitmap(const char* fname) {
     printf("array resized (numLoadedBitmaps is now [%d])\n", numLoadedBitmaps);
     return newLoad->bitmap;
 }
+
+void serviceAnimation(Sprite* sprite) {
+    if (sprite->frameTimer > 0 && !--(sprite->frameTimer)) {
+        // advance frame and reset timer
+        if (++(sprite->tile) > sprite->startTile + sprite->animLen)
+            sprite->tile = sprite->startTile;
+        sprite->frameTimer = sprite->frameDur;
+    }
+}

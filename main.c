@@ -74,6 +74,7 @@ int main()
         switch(event.type) {
             case ALLEGRO_EVENT_TIMER:
                 // game logic goes here.
+                serviceActors();
                 redraw = true;
                 break;
 

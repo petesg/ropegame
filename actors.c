@@ -25,7 +25,7 @@ Actor* addActor(void (*newInitRoutine)(Actor*)) {
     Actor* tempPtr = realloc(actors, sizeof(Actor) * (numActors + 1));
     if (!tempPtr) {
         errorOutOfMemory();
-        return tempActor; // TODO figure out how I really want to handle this
+        return tempActor; // TODO figure out how we really want to handle this
     }
     actors = tempPtr;
     printf("array resized (numActors is still [%d])\n", numActors);
@@ -39,7 +39,9 @@ Actor* addActor(void (*newInitRoutine)(Actor*)) {
 }
 
 void serviceActors(void) {
-
+    for (uint16_t i = 0; i < numActors; ++i) {
+        actors[i].serviceRoutine(actors + i);
+    }
 }
 
 void disposeActors(void) {
@@ -70,13 +72,18 @@ void initGuy(Actor* self) {
     self->sprite.horTiles = 8;
     self->sprite.tileWidth = 50;
     self->sprite.tileHeight = 37;
-    self->sprite.tile = 0;
+    self->sprite.tile = 55;
+    self->sprite.startTile = 55;
+    self->sprite.animLen = 4;
+    self->sprite.frameTimer = 8;
+    self->sprite.frameDur = 3;
 
     printf("guy is initialized (%d, %d) - [%p]\n", self->pos[0], self->pos[1], self);
 }
 
 void serviceGuy(Actor* self) {
-
+    //printf("servicing [%p], frame: %d, timer: %d", self, self->sprite.tile, self->sprite.frameTimer);
+    serviceAnimation(&self->sprite);
 }
 
 void disposeGuy(Actor* self) {

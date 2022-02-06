@@ -9,11 +9,15 @@
 typedef struct ACTOR Actor;
 
 typedef struct {
-    ALLEGRO_BITMAP* sheet;
-    uint16_t tileWidth; // TODO add an offset?
-    uint16_t tileHeight;
-    uint8_t horTiles;
-    uint16_t tile;
+    ALLEGRO_BITMAP* sheet;  // bitmap of spritesheet
+    uint16_t tileWidth;     // pixel width of tiles in spritesheet
+    uint16_t tileHeight;    // pixel height of tiles in spritesheet
+    uint8_t horTiles;       // number of tiles horizontally in spritesheet
+    uint16_t tile;          // currently displayed tile (top-left is 0)
+    uint16_t startTile;     // index of first tile of current animation
+    uint16_t animLen;       // number of frames in current animation
+    int8_t frameDur;        // duration of each frame in current animation
+    int8_t frameTimer;      // countdown timer to advance current frame of animation (-1 for no animation)
 } Sprite;
 
 struct ACTOR {

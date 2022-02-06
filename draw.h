@@ -24,6 +24,7 @@
 void initDraw(void);
 void draw(void);
 void disposeDraw(void);
+void serviceAnimation(Sprite* sprite);
 
 extern ALLEGRO_DISPLAY* disp;
 
