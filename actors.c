@@ -11,9 +11,10 @@ void initActors(void) {
     // add special actors here
     addActor(initGuy);
     tempActor = addActor(initGuy);
-    tempActor->pos[0] = 150;
+    tempActor->pos[0] = 160;
     tempActor->pos[1] = 80;
     tempActor->sprite.tile = 44;
+    tempActor->v[1] = -5;
 
     printf("added guy (%d, %d) - %p\n", actors[0].pos[0], actors[0].pos[1], &actors[0]);
     printf("second guy tile is %d\n", actors[1].sprite.tile);
@@ -59,16 +60,23 @@ void initGuy(Actor* self) {
     // start position
     self->pos[0] = 100;
     self->pos[1] = 100;
+    self->v[0] = 0;
+    self->v[1] = 0;
     
     // handling routines
     self->serviceRoutine = serviceGuy;
     self->disposeRoutine = disposeGuy;
+
+    // hitbox
+    self->hitboxRad = 11;
     
     // setup sprite
     self->sprite.sheet = getBitmap(ASSET_SH_GUY);
     if(!self->sprite.sheet) {
         // TODO complain
     }
+    self->sprite.xOffset = 25;
+    self->sprite.yOffset = 25;
     self->sprite.horTiles = 8;
     self->sprite.tileWidth = 50;
     self->sprite.tileHeight = 37;
@@ -82,7 +90,18 @@ void initGuy(Actor* self) {
 }
 
 void serviceGuy(Actor* self) {
-    //printf("servicing [%p], frame: %d, timer: %d", self, self->sprite.tile, self->sprite.frameTimer);
+    // calculate v from physics
+    double a[2] = {0, 0.5}; // base acceleration (gravity)
+    // TODO calculate forces
+    // ...
+    self->v[0] += a[0];
+    self->v[1] += a[1];
+
+    // move by v
+    //self->pos[0] += 1;
+    Collider* hit = moveActor(self);
+    // TODO do I need to record forces from hit collider for next iteration?
+
     serviceAnimation(&self->sprite);
 }
 

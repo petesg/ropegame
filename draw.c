@@ -1,6 +1,7 @@
 #include "draw.h"
 
 ALLEGRO_FONT* smallFont;
+bool showHitboxes = true;
 
 struct LoadedBitmap { // dict of loaded bitmaps
     ALLEGRO_BITMAP* bitmap;
@@ -12,6 +13,7 @@ uint16_t numLoadedBitmaps;
 void initDraw(void) {
 
     al_init_image_addon();
+    al_init_primitives_addon();
     
     smallFont = al_create_builtin_font();
 
@@ -27,14 +29,25 @@ void draw(void) {
     al_draw_text(smallFont, al_map_rgb(255, 255, 255), 0, 0, 0, str);
 
     // draw actors
-    for (uint16_t i = 0; i < numActors; i++) {
-        Actor* drawdActor = &actors[i];
+    for (uint16_t i = 0; i < numActors; ++i) {
+        //Actor* drawdActor = &actors[i];
         //printf("numActors: %d, looking at actor: %d, actorx: %d\n", numActors, i, drawdActor->pos[0]);
         Sprite* s = &actors[i].sprite;
         ALLEGRO_BITMAP* tile = al_create_sub_bitmap(s->sheet, s->tileWidth * (s->tile % s->horTiles), s->tileHeight * (s->tile / s->horTiles), s->tileWidth, s->tileHeight);
         // TODO measure if this is the fastest way to do this or should the sub bitmap only be calculated when frame changes?
-        al_draw_bitmap(tile, actors[i].pos[0], actors[i].pos[1], 0);
+        al_draw_bitmap(tile, actors[i].pos[0] - s->xOffset, actors[i].pos[1] - s->yOffset, 0);
         al_destroy_bitmap(tile);
+        if (showHitboxes) {
+            al_draw_circle(actors[i].pos[0], actors[i].pos[1], actors[i].hitboxRad, al_map_rgb(0, 180, 0), 1);
+        }
+    }
+
+    // draw colliders
+    if (showHitboxes) {
+        for (uint32_t i = 0; i < numColliders; ++i) {
+            Collider* c = &colliders[i];
+            al_draw_line(c->p1[0], c->p1[1], c->p2[0], c->p2[1], al_map_rgb_f(1, 0, 0), 1);
+        }
     }
 
     al_flip_display();

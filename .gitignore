@@ -1,3 +1,4 @@
 **/ropeGame
 **/*.o
 **/*.log
+.vscode/targets.log

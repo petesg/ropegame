@@ -6,6 +6,7 @@
 
 #include "actors.h"
 #include "draw.h"
+#include "collision.h"
 
 ALLEGRO_TIMER* frameTimer;
 ALLEGRO_EVENT_QUEUE* queue;
@@ -35,7 +36,7 @@ int bootupAllegro(void) {
         return 0;
     }
 
-    disp = al_create_display(1920, 1080); // TODO fullscreen?  calculate display size?  adjustable?
+    disp = al_create_display(480, 320); // TODO fullscreen?  calculate display size?  adjustable?
     if(!disp) {
         printf("couldn't initialize display\n");
         return 0;
@@ -61,6 +62,7 @@ int main()
         return 1;
     initDraw();
     initActors();
+    initCollision();
 
     bool done = false;
     bool redraw = true;

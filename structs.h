@@ -13,6 +13,8 @@ typedef struct {
     ALLEGRO_BITMAP* sheet;  // bitmap of spritesheet
     uint16_t tileWidth;     // pixel width of tiles in spritesheet
     uint16_t tileHeight;    // pixel height of tiles in spritesheet
+    uint16_t xOffset;       // X-offset to center of sprite in tile
+    uint16_t yOffset;       // Y-offset to center of sprite in tile
     uint8_t horTiles;       // number of tiles horizontally in spritesheet
     uint16_t tile;          // currently displayed tile (top-left is 0)
     uint16_t startTile;     // index of first tile of current animation
@@ -25,6 +27,7 @@ struct ACTOR {
     uint32_t pos[2];
     double v[2];
     Sprite sprite;
+    uint8_t hitboxRad;
     void (*initRoutine)(Actor*);
     void (*serviceRoutine)(Actor*);
     void (*disposeRoutine)(Actor*);
