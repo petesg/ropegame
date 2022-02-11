@@ -39,6 +39,12 @@ uint16_t getNearbyColliders(uint16_t pos[2], uint8_t radius, Collider** dest) {
 // if a collision is detected, pointer to interfering collider will be returned
 Collider* moveActor(Actor* a) {
 
+    // TODO change this whole method.
+    // new method:
+    // First, for both ends of collider in question along with the endpoint of the located v vector,
+    // project that point onto the other line, if <R then collision is detected.  If that test passes
+    // with no collision, check for intersection of two line segments.
+
     double vMag = sqrt(pow(a->v[0], 2) + pow(a->v[1], 2));  // magnitude of v
     uint16_t numSteps = vMag / (2 * a->hitboxRad);          // number of preliminary steps to check 
     double norm[] = {a->v[0] / vMag, a->v[1] / vMag};       // normalized vector along direction of v
