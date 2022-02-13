@@ -1,5 +1,5 @@
 CC = gcc
-CLFAGS = -Wall -c
+CLFLAGS = -Wall -lm
 EFLAGS = # I don't know what this does?
 EOPTION = `pkg-config allegro-5 allegro_font-5 allegro_image-5 allegro_primitives-5 --libs --cflags`
 SOURCE = main.c actors.c draw.c errors.c collision.c
@@ -14,4 +14,4 @@ clean:
 	rm -rf $(EXC) *.o
 
 $(EXC): 
-	gcc $(SOURCE) $(EFLAGS) -o $(EXC) $(EOPTION)
+	gcc $(SOURCE) $(EFLAGS) $(CLFLAGS) -o $(EXC) $(EOPTION)

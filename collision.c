@@ -31,22 +31,28 @@ Collider* addCollider(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2) {
 
 uint16_t getNearbyColliders(uint16_t pos[2], uint8_t radius, Collider** dest) {
     //  TODO actually do some filtering
-    *dest = colliders;
+    dest = malloc(sizeof(Collider*) * numColliders);
     return numColliders;
 }
 
 // moves the actor along its velocity vector
-// if a collision is detected, pointer to interfering collider will be returned
+// if a collision is detected, pointer to interfering collider will be returned TODO: probably should return some form of resulting force/impulse/velocity?
 Collider* moveActor(Actor* a) {
 
     double vMag = sqrt(pow(a->v[0], 2) + pow(a->v[1], 2));  // magnitude of v
     uint16_t numSteps = vMag / (2 * a->hitboxRad);          // number of preliminary steps to check 
     double norm[] = {a->v[0] / vMag, a->v[1] / vMag};       // normalized vector along direction of v
-    uint32_t goodPos[] = {a->pos[0], a->pos[1]};              // furthest forward position along v known to be safe (updated as we go along)
+    uint32_t goodPos[] = {a->pos[0], a->pos[1]};            // furthest forward position along v known to be safe (updated as we go along)
 
-    for (uint16_t i = 0; i < numSteps; ++i) {
-
+    Collider** nearby;
+    uint16_t iMax = getNearbyColliders(a->pos, a->hitboxRad, nearby);
+    for (uint16_t i = 0; i < iMax; ++i) {
+        //nearby[i]->p1
+        // check distance from each endpoint point to v vector
+        // check distance from endpoint of v vector to collider line
+        // check intersection of lines
     }
+    free(nearby);
     
     a->pos[0] += a->v[0];
     a->pos[1] += a->v[1];

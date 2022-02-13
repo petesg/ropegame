@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <math.h>
 
+#include <cglm/cglm.h>
+
 #include "structs.h"
 #include "errors.h"
 

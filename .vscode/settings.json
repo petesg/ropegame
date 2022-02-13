@@ -5,6 +5,8 @@
         "error.h": "c",
         "events.h": "c",
         "draw.h": "c",
-        "actors.h": "c"
+        "actors.h": "c",
+        "collision.h": "c",
+        "stdio.h": "c"
     }
 }
