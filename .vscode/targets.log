@@ -6,7 +6,8 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Feb 13 12:08:42 2022
+# Make data base, printed on Sun Feb 13 15:49:27 2022
+ 
 
 # Variables
 
@@ -117,7 +118,6 @@ PWD = /home/peter/Documents/random/ropegame
 # default
 .LOADED := 
 # environment
- 
 SSH_AGENT_PID = 1801
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
@@ -226,6 +226,7 @@ LANG = C
 # environment
 VSCODE_PID = 20259
 # variable set hash-table stats:
+ 
 # Load=107/1024=10%, Rehash=0, Collisions=14/137=10%
 
 # Pattern-specific Variable Values
@@ -275,7 +276,7 @@ draw.c:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-13 11:25:17.164048287
+#  Last modified 2022-02-13 15:49:14.317795143
 #  File has been updated.
 #  Successfully updated.
 
@@ -296,20 +297,19 @@ clean:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
 #  recipe to execute (from 'makefile', line 14):
 	rm -rf $(EXC) *.o
 
 # Not a target:
 collision.c:
 #  Implicit rule search has been done.
-#  Last modified 2022-02-13 10:54:02.827840303
+#  Last modified 2022-02-13 15:48:37.085092571
 #  File has been updated.
 #  Successfully updated.
 
 ropeGame:
 #  Implicit rule search has not been done.
-#  Last modified 2022-02-13 11:28:45.907748954
+#  Last modified 2022-02-13 14:27:43.030854719
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'makefile', line 17):
@@ -336,6 +336,6 @@ exec: ropeGame main.c actors.c draw.c errors.c collision.c
 # strcache performance: lookups = 49 / hit rate = 44%
 # hash-table stats:
 # Load=27/8192=0%, Rehash=0, Collisions=1/49=2%
-# Finished Make data base on Sun Feb 13 12:08:42 2022
+# Finished Make data base on Sun Feb 13 15:49:27 2022
 
  
