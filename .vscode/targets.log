@@ -6,8 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Feb 13 15:49:27 2022
- 
+# Make data base, printed on Mon Feb 14 15:56:31 2022
 
 # Variables
 
@@ -50,7 +49,7 @@ VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupp
 # environment
 _ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 8:27525
+JOURNAL_STREAM = 8:49026
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'makefile', line 1)
@@ -70,7 +69,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 1606
+MANAGERPID = 1621
 # environment
 LESSOPEN = | /usr/bin/lesspipe %s
 # makefile (from 'makefile', line 3)
@@ -84,7 +83,7 @@ PATH = /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/peter-desktop:@/tmp/.ICE-unix/1836,unix/peter-desktop:/tmp/.ICE-unix/1836
+SESSION_MANAGER = local/peter-desktop:@/tmp/.ICE-unix/1855,unix/peter-desktop:/tmp/.ICE-unix/1855
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -94,7 +93,7 @@ VSCODE_LOG_STACK = false
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=220bc0d0-c9cc-4cdc-834d-6e70478166b8&iid=220bc0d0-c9cc-4cdc-834d-6e70478166b8&sid=220bc0d0-c9cc-4cdc-834d-6e70478166b8","uploadToServer":true}
 # environment
-INVOCATION_ID = 79bad0151d68411085a01b9528724cbb
+INVOCATION_ID = a9dac6e9493e4b81bc6c32e954fd19c5
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -104,7 +103,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 20259
+GIO_LAUNCHED_DESKTOP_FILE_PID = 10088
 # automatic
 %F = $(notdir $%)
 # environment
@@ -118,7 +117,7 @@ PWD = /home/peter/Documents/random/ropegame
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1801
+SSH_AGENT_PID = 1812
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -156,7 +155,7 @@ CC = gcc
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-6e7d4325-0deb-405a-a3d2-c113bbd3e161.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-ec64ba69-a4a8-40ca-82b3-dd19947ced7a.sock
 # makefile (from 'makefile', line 5)
 SOURCE = main.c actors.c draw.c errors.c collision.c
 # default
@@ -224,9 +223,8 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LANG = C
 # environment
-VSCODE_PID = 20259
+VSCODE_PID = 10088
 # variable set hash-table stats:
- 
 # Load=107/1024=10%, Rehash=0, Collisions=14/137=10%
 
 # Pattern-specific Variable Values
@@ -287,6 +285,7 @@ makefile:
 #  File has not been updated.
 
 # Not a target:
+ 
 errors.c:
 #  Implicit rule search has been done.
 #  Last modified 2022-02-03 11:55:17.902965311
@@ -336,6 +335,6 @@ exec: ropeGame main.c actors.c draw.c errors.c collision.c
 # strcache performance: lookups = 49 / hit rate = 44%
 # hash-table stats:
 # Load=27/8192=0%, Rehash=0, Collisions=1/49=2%
-# Finished Make data base on Sun Feb 13 15:49:27 2022
+# Finished Make data base on Mon Feb 14 15:56:31 2022
 
  

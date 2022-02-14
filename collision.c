@@ -25,13 +25,22 @@ Collider* addCollider(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2) {
     newCollider->p1[1] = y1;
     newCollider->p2[0] = x2;
     newCollider->p2[1] = y2;
+    newCollider->len = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+    newCollider->cos = fabs(x2 - x1) / newCollider->len;
+    newCollider->sin = fabs(y2 - y1) / newCollider->len;
     printf("initialized collider\n");
     return newCollider;
 }
 
 uint16_t getNearbyColliders(uint16_t pos[2], uint8_t radius, Collider** dest) {
     //  TODO actually do some filtering
-    dest = malloc(sizeof(Collider*) * numColliders);
+    *dest = malloc(sizeof(Collider*) * numColliders);
+    printf("-\n");
+    for (uint16_t i = 0; i < numColliders; ++i) {
+        printf("c[%d]=%p", i, &colliders[i]);
+        //dest[i] = &colliders[i];
+    }
+    printf("\n");
     return numColliders;
 }
 
@@ -50,8 +59,8 @@ Collider* moveActor(Actor* a) {
     double norm[] = {a->v[0] / vMag, a->v[1] / vMag};       // normalized vector along direction of v
     uint32_t goodPos[] = {a->pos[0], a->pos[1]};            // furthest forward position along v known to be safe (updated as we go along)
 
-    Collider** nearby;
-    uint16_t iMax = getNearbyColliders(a->pos, a->hitboxRad, nearby);
+    Collider* nearby;
+    uint16_t iMax = getNearbyColliders(a->pos, a->hitboxRad, &nearby);
     for (uint16_t i = 0; i < iMax; ++i) {
         //nearby[i]->p1
         // check distance from each endpoint point to v vector
