@@ -37,6 +37,9 @@ typedef struct {
     uint32_t p1[2];
     uint32_t p2[2];
     double len;
+    double coefA;
+    double coefB;
+    double coefC;
     double cos;
     double sin;
 } Collider;

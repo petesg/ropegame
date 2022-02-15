@@ -91,7 +91,7 @@ void initGuy(Actor* self) {
 
 void serviceGuy(Actor* self) {
     // calculate v from physics
-    printf("servicing guy %p\n", self);
+    //printf("servicing guy %p\n", self);
     double a[2] = {0, 0.5}; // base acceleration (gravity)
     // TODO calculate forces
     // ...
@@ -101,13 +101,13 @@ void serviceGuy(Actor* self) {
     // move by v
     //self->pos[0] += 1;
     Collider* hit = moveActor(self);
-    printf("moved guy\n");
+    //printf("moved guy\n");
 
     // TODO do I need to record forces from hit collider for next iteration?
     if (hit) {
 
     }
-    printf("servicing animation\n");
+    //printf("servicing animation\n");
     serviceAnimation(&self->sprite);
 }
 

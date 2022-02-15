@@ -29,25 +29,26 @@ Collider* addCollider(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2) {
     newCollider->len = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
     newCollider->cos = fabs(x2 - x1) / newCollider->len;
     newCollider->sin = fabs(y2 - y1) / newCollider->len;
+    // TODO calculate a, b, c (line equation coefs)
     printf("initialized collider\n");
     return newCollider;
 }
 
 uint8_t getNearbyColliders(uint32_t pos[2], uint8_t radius) {
     //  TODO actually do some filtering
-    printf("starting filter on %d colliders\n", numColliders);
+    //printf("starting filter on %d colliders\n", numColliders);
     //*dest = malloc(sizeof(Collider*) * numColliders);
     uint8_t numFound = 0;
     //printf("allocated %d bytes at %p", sizeof(Collider*) * numColliders, dest);
     for (uint16_t i = 0; i < numColliders; ++i) {
-        printf(" c[%d]=%p:", i, &colliders[i]);
+        //printf(" c[%d]=%p:", i, &colliders[i]);
         nearby[numFound++] = &colliders[i]; // TODO this line is somehow causing a stack smashing detection upon exiting the calling moveActor, absolutley no clue why
-        printf("filled %p with %p -", &nearby[i], nearby[i]);
+        //printf("filled %p with %p -", &nearby[i], nearby[i]);
         if (!numFound) {
             // TODO handle overflow
         }
     }
-    printf("done\n");
+    //printf("done\n");
     return numFound;
 }
 
@@ -65,12 +66,13 @@ Collider* moveActor(Actor* a) {
     //uint16_t numSteps = vMag / (2 * a->hitboxRad);          // number of preliminary steps to check 
     //double norm[] = {a->v[0] / vMag, a->v[1] / vMag};       // normalized vector along direction of v
     //uint32_t goodPos[] = {a->pos[0], a->pos[1]};            // furthest forward position along v known to be safe (updated as we go along)
-    printf("-\nmoving an actor\n");
+    //printf("-\nmoving an actor\n");
     uint8_t numNearby = getNearbyColliders(a->pos, a->hitboxRad);
-    printf("filtered colliders into %p\n", &nearby);
+    //printf("filtered colliders into %p\n", &nearby);
     for (uint8_t i = 0; i < numNearby; ++i) {
         //nearby[i]->p1
-        printf("-found nearby: %p\n", nearby[i]);
+        
+        //printf("-found nearby: %p\n", nearby[i]);
         // check distance from each endpoint point to v vector
         // check distance from endpoint of v vector to collider line
         // check intersection of lines
@@ -79,7 +81,7 @@ Collider* moveActor(Actor* a) {
     a->pos[0] += a->v[0];
     a->pos[1] += a->v[1];
 
-    printf("moved an actor\n");
+    //printf("moved an actor\n");
 
     return NULL;
 }
