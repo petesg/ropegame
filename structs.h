@@ -46,6 +46,7 @@ typedef struct {
     double coefC;
     double cos;
     double sin;
+    double slopeNorm;
 } Line;
 
 #endif // STRUCTS_H
