@@ -31,7 +31,7 @@ Actor* addActor(void (*newInitRoutine)(Actor*)) {
     actors = tempPtr;
     printf("array resized (numActors is still [%d])\n", numActors);
     Actor* newActor = actors + numActors++;
-    // initialize new actor
+    // initialize new actor (set and run init routine)
     printf("actors: %p, newActor: %p, (actors+1: %p)\n", actors, newActor, actors + 1);
     newActor->initRoutine = newInitRoutine;
     newActor->initRoutine(newActor);

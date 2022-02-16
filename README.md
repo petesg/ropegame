@@ -1,0 +1,1 @@
+A self-taught embedded software engineer learns to write a game engine from scratch.
