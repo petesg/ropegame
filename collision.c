@@ -27,8 +27,11 @@ Collider* addCollider(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2) {
     newCollider->p2[0] = x2;
     newCollider->p2[1] = y2;
     newCollider->len = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
-    newCollider->cos = fabs(x2 - x1) / newCollider->len;
-    newCollider->sin = fabs(y2 - y1) / newCollider->len;
+    newCollider->line.cos = fabs(x2 - x1) / newCollider->len;
+    newCollider->line.sin = fabs(y2 - y1) / newCollider->len;
+    newCollider->line.a = (y2 - y1) / (x2 - x1);
+    newCollider->line.b = -1;
+    newCollider->line.c = y2 - (y2 - y1) / (x2 - x1);
     // TODO calculate a, b, c (line equation coefs)
     printf("initialized collider\n");
     return newCollider;
