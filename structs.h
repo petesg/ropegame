@@ -41,6 +41,7 @@ typedef struct {
     uint32_t p2[2];*/
     vec2 p1;
     vec2 p2;
+    vec2 vec;
     double len;
     //Line line;
 } Collider;

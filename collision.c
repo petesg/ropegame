@@ -26,7 +26,9 @@ Collider* addCollider(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2) {
     newCollider->p1[1] = y1;
     newCollider->p2[0] = x2;
     newCollider->p2[1] = y2;
-    newCollider->len = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
+    glm_vec2_sub(newCollider->p1, newCollider->p2, newCollider->vec);
+    newCollider->len = glm_vec2_norm(newCollider->vec);
+    //newCollider->len = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
     // precalculate some geometry for collision math
     /*newCollider->line.cos = fabs(x2 - x1) / newCollider->len;
     newCollider->line.sin = fabs(y2 - y1) / newCollider->len;
@@ -69,16 +71,18 @@ Collider* moveActor(Actor* a) {
     // 1. calculate r = |Pa x C|/|C|
     //  - if r > R : DONE (no collision)
     //  - else : continue...
-    // 2. calculate Pf  = Pa - Va *  (R - r) / Cos(theta)
+    // 2. calculate Pf  = Pa - Va * (R - r) / Cos(theta)
     //              Pc' = Pf * C / (C * C) * C
     //              d   = Pc' * C
     //  - if (d > 0 && d < |C|) : DONE (collision on flat)
     //  - else continue...
     // 3. solve intersection about corner
     //  - ...
+    //
+    // (* = dot product)
 
-    //glm_vec2_add(a->pos, a->v)
-    //glm_vec2_add(a->)
+    vec2 Pa, temp;
+    glm_vec2_add(a->pos, a->v, Pa);
 
     //double vMag = sqrt(pow(a->v[0], 2) + pow(a->v[1], 2));  // magnitude of v
     //uint16_t numSteps = vMag / (2 * a->hitboxRad);          // number of preliminary steps to check 
@@ -88,7 +92,7 @@ Collider* moveActor(Actor* a) {
     uint8_t numNearby = getNearbyColliders(a->pos, a->hitboxRad);
     //printf("filtered colliders into %p\n", &nearby);
     for (uint8_t i = 0; i < numNearby; ++i) {
-        //nearby[i]->p1
+        fabs(glm_vec2_cross(Pa, nearby[i]->vec)) / glm_vec2_norm(nearby[i]->vec);
         //printf("-found nearby: %p\n", nearby[i]);
         // check distance from each endpoint point to v vector
 
