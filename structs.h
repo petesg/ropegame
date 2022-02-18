@@ -3,6 +3,8 @@
 
 #include <stdint-gcc.h>
 
+#include <cglm/cglm.h>
+
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_image.h>
 
@@ -24,8 +26,9 @@ typedef struct {
 } Sprite;
 
 struct ACTOR {
-    uint32_t pos[2];
-    double v[2];
+    //uint32_t pos[2];
+    vec2 pos;
+    vec2 v;
     Sprite sprite;
     uint8_t hitboxRad;
     void (*initRoutine)(Actor*);
@@ -34,19 +37,21 @@ struct ACTOR {
 };
 
 typedef struct {
-    uint32_t p1[2];
-    uint32_t p2[2];
+    /*uint32_t p1[2];
+    uint32_t p2[2];*/
+    vec2 p1;
+    vec2 p2;
     double len;
-    Line line;
+    //Line line;
 } Collider;
 
-typedef struct {
+/*typedef struct {
     double coefA;
     double coefB;
     double coefC;
     double cos;
     double sin;
     double slopeNorm;
-} Line;
+} Line;*/
 
 #endif // STRUCTS_H

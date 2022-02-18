@@ -28,17 +28,17 @@ Collider* addCollider(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2) {
     newCollider->p2[1] = y2;
     newCollider->len = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
     // precalculate some geometry for collision math
-    newCollider->line.cos = fabs(x2 - x1) / newCollider->len;
+    /*newCollider->line.cos = fabs(x2 - x1) / newCollider->len;
     newCollider->line.sin = fabs(y2 - y1) / newCollider->len;
     newCollider->line.a = (y2 - y1) / (x2 - x1);
     newCollider->line.b = -1;
     newCollider->line.c = y2 - (y2 - y1) / (x2 - x1);
-    newCollider->line.slopeNorm = sqrt(pow(newCollider->line.a, 2) + pow(newCollider->line.b, 2));
+    newCollider->line.slopeNorm = sqrt(pow(newCollider->line.a, 2) + pow(newCollider->line.b, 2));*/
     printf("initialized collider\n");
     return newCollider;
 }
 
-uint8_t getNearbyColliders(uint32_t pos[2], uint8_t radius) {
+uint8_t getNearbyColliders(float pos[2], uint8_t radius) {
     //  TODO actually do some filtering
     //printf("starting filter on %d colliders\n", numColliders);
     //*dest = malloc(sizeof(Collider*) * numColliders);
@@ -66,6 +66,20 @@ Collider* moveActor(Actor* a) {
     // project that point onto the other line, if <R then collision is detected.  If that test passes
     // with no collision, check for intersection of two line segments.
 
+    // 1. calculate r = |Pa x C|/|C|
+    //  - if r > R : DONE (no collision)
+    //  - else : continue...
+    // 2. calculate Pf  = Pa - Va *  (R - r) / Cos(theta)
+    //              Pc' = Pf * C / (C * C) * C
+    //              d   = Pc' * C
+    //  - if (d > 0 && d < |C|) : DONE (collision on flat)
+    //  - else continue...
+    // 3. solve intersection about corner
+    //  - ...
+
+    //glm_vec2_add(a->pos, a->v)
+    //glm_vec2_add(a->)
+
     //double vMag = sqrt(pow(a->v[0], 2) + pow(a->v[1], 2));  // magnitude of v
     //uint16_t numSteps = vMag / (2 * a->hitboxRad);          // number of preliminary steps to check 
     //double norm[] = {a->v[0] / vMag, a->v[1] / vMag};       // normalized vector along direction of v
@@ -75,7 +89,6 @@ Collider* moveActor(Actor* a) {
     //printf("filtered colliders into %p\n", &nearby);
     for (uint8_t i = 0; i < numNearby; ++i) {
         //nearby[i]->p1
-        
         //printf("-found nearby: %p\n", nearby[i]);
         // check distance from each endpoint point to v vector
 
@@ -83,8 +96,12 @@ Collider* moveActor(Actor* a) {
         // check intersection of lines
     }
     
+    /*
     a->pos[0] += a->v[0];
     a->pos[1] += a->v[1];
+    */
+    glm_vec2_add(a->pos, a->v, a->pos);
+
 
     //printf("moved an actor\n");
 
@@ -93,8 +110,4 @@ Collider* moveActor(Actor* a) {
 
 bool testCollision(uint32_t* p1, uint32_t* p2, uint32_t* p3, uint16_t r) {
     return false;
-}
-
-double inline distToLine(uint32_t p[], Line* l) {
-    return fabs(l->coefA * p[0] + l->coefB * p[1] + l->coefC) / l->slopeNorm;
 }

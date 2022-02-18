@@ -16,7 +16,7 @@ void initActors(void) {
     tempActor->sprite.tile = 44;
     tempActor->v[1] = -5;
 
-    printf("added guy (%d, %d) - %p\n", actors[0].pos[0], actors[0].pos[1], &actors[0]);
+    printf("added guy (%f, %f) - %p\n", actors[0].pos[0], actors[0].pos[1], &actors[0]);
     printf("second guy tile is %d\n", actors[1].sprite.tile);
 
 }
@@ -86,7 +86,7 @@ void initGuy(Actor* self) {
     self->sprite.frameTimer = 8;
     self->sprite.frameDur = 3;
 
-    printf("guy is initialized (%d, %d) - [%p]\n", self->pos[0], self->pos[1], self);
+    printf("guy is initialized (%f, %f) - [%p]\n", self->pos[0], self->pos[1], self);
 }
 
 void serviceGuy(Actor* self) {
