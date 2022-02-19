@@ -36,7 +36,7 @@ Collider* addCollider(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2) {
     newCollider->line.b = -1;
     newCollider->line.c = y2 - (y2 - y1) / (x2 - x1);
     newCollider->line.slopeNorm = sqrt(pow(newCollider->line.a, 2) + pow(newCollider->line.b, 2));*/
-    printf("initialized collider\n");
+    printf("initialized collider (len %f)\n", newCollider->len);
     return newCollider;
 }
 
@@ -81,7 +81,8 @@ Collider* moveActor(Actor* a) {
     //
     // (* = dot product)
 
-    vec2 Pa, temp;
+    vec2 Pa, Pf, temp;
+    float r;
     glm_vec2_add(a->pos, a->v, Pa);
 
     //double vMag = sqrt(pow(a->v[0], 2) + pow(a->v[1], 2));  // magnitude of v
@@ -92,7 +93,20 @@ Collider* moveActor(Actor* a) {
     uint8_t numNearby = getNearbyColliders(a->pos, a->hitboxRad);
     //printf("filtered colliders into %p\n", &nearby);
     for (uint8_t i = 0; i < numNearby; ++i) {
-        fabs(glm_vec2_cross(Pa, nearby[i]->vec)) / glm_vec2_norm(nearby[i]->vec);
+        // check tip distance
+        r = fabs(glm_vec2_cross(Pa, nearby[i]->vec)) / glm_vec2_norm(nearby[i]->vec);
+        if (r <= a->hitboxRad) {
+            printf("actor %p collided with %p\n", a, nearby[i]);
+            // v tip collision detected
+            glm_vec2_normalize_to(a->v, temp);
+            // calculate Pf (fixed position)
+            glm_vec2_scale_as(a->v, (r - a->hitboxRad) * glm_vec2_norm(Pa) * glm_vec2_norm(nearby[i]->vec) / glm_vec2_dot(Pa, nearby[i]->vec), Pf);
+            // TODO TEMP move (actually gotta make sure on flat first)
+            glm_vec2_add(a->pos, Pf, a->pos);
+            a->v[0] = 0;
+            a->v[1] = 0;
+            return nearby[i];
+        }
         //printf("-found nearby: %p\n", nearby[i]);
         // check distance from each endpoint point to v vector
 
