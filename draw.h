@@ -27,6 +27,7 @@ void initDraw(void);
 void draw(void);
 void disposeDraw(void);
 void serviceAnimation(Sprite* sprite);
+void drawVec(vec2 v, vec2 loc);
 
 extern ALLEGRO_DISPLAY* disp;
 

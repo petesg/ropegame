@@ -2,6 +2,8 @@
 
 ALLEGRO_FONT* smallFont;
 bool showHitboxes = true;
+vec2 vecs[256];
+uint8_t numVecs;
 
 struct LoadedBitmap { // dict of loaded bitmaps
     ALLEGRO_BITMAP* bitmap;
@@ -48,6 +50,10 @@ void draw(void) {
             Collider* c = &colliders[i];
             al_draw_line(c->p1[0], c->p1[1], c->p2[0], c->p2[1], al_map_rgb_f(1, 0, 0), 1);
         }
+        for (uint8_t i = 0; i < numVecs; ++i) {
+            al_draw_line(vecs[2*i][0], vecs[2*i][1], vecs[2*i+1][0], vecs[2*i+1][1], al_map_rgb_f(0, 0, 1), 1);
+        }
+        numVecs = 0;
     }
 
     al_flip_display();
@@ -95,4 +101,11 @@ void serviceAnimation(Sprite* sprite) {
             sprite->tile = sprite->startTile;
         sprite->frameTimer = sprite->frameDur;
     }
+}
+
+void drawVec(vec2 v, vec2 loc) {
+    glm_vec2_copy(loc, vecs[2 * numVecs]);
+    vec2 endPt;
+    glm_vec2_add(loc, v, endPt);
+    glm_vec2_copy(endPt, vecs[2 * numVecs++ + 1]);
 }
