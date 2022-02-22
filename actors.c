@@ -9,15 +9,15 @@ void initActors(void) {
     printf("actors init\n");
 
     // add special actors here
-    addActor(initGuy);
+    //addActor(initGuy);
     tempActor = addActor(initGuy);
-    tempActor->pos[0] = 160;
-    tempActor->pos[1] = 80;
-    tempActor->sprite.tile = 44;
+    //tempActor->pos[0] = 160;
+    //tempActor->pos[1] = 80;
+    //tempActor->sprite.tile = 44;
     tempActor->v[1] = -5;
 
-    printf("added guy (%f, %f) - %p\n", actors[0].pos[0], actors[0].pos[1], &actors[0]);
-    printf("second guy tile is %d\n", actors[1].sprite.tile);
+    printf("added guy (%f, %f) with v=%f - %p\n", actors[0].pos[0], actors[0].pos[1], actors[0].v[1], &actors[0]);
+    //printf("second guy tile is %d\n", actors[1].sprite.tile);
 
 }
 

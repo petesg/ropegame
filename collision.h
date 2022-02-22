@@ -8,6 +8,7 @@
 
 #include "structs.h"
 #include "errors.h"
+#include "draw.h"
 
 extern Collider* colliders;
 extern uint32_t numColliders;

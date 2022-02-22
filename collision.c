@@ -85,24 +85,27 @@ Collider* moveActor(Actor* a) {
     float r;
     glm_vec2_add(a->pos, a->v, Pa);
 
+    drawVec(a->v, a->pos);
+
     //double vMag = sqrt(pow(a->v[0], 2) + pow(a->v[1], 2));  // magnitude of v
     //uint16_t numSteps = vMag / (2 * a->hitboxRad);          // number of preliminary steps to check 
     //double norm[] = {a->v[0] / vMag, a->v[1] / vMag};       // normalized vector along direction of v
     //uint32_t goodPos[] = {a->pos[0], a->pos[1]};            // furthest forward position along v known to be safe (updated as we go along)
     //printf("-\nmoving an actor\n");
     uint8_t numNearby = getNearbyColliders(a->pos, a->hitboxRad);
+    printf("moving %p at [%f, %f]\n", a, a->v[0], a->v[1]);
     //printf("filtered colliders into %p\n", &nearby);
     for (uint8_t i = 0; i < numNearby; ++i) {
         // check tip distance
         r = fabs(glm_vec2_cross(Pa, nearby[i]->vec)) / glm_vec2_norm(nearby[i]->vec);
         if (r <= a->hitboxRad) {
-            printf("actor %p collided with %p\n", a, nearby[i]);
+            //printf("actor %p collided with %p (v is [%f, %f])\n", a, nearby[i], a->v[0], a->v[1]);
             // v tip collision detected
             glm_vec2_normalize_to(a->v, temp);
             // calculate Pf (fixed position)
             glm_vec2_scale_as(a->v, (r - a->hitboxRad) * glm_vec2_norm(Pa) * glm_vec2_norm(nearby[i]->vec) / glm_vec2_dot(Pa, nearby[i]->vec), Pf);
             // TODO TEMP move (actually gotta make sure on flat first)
-            glm_vec2_add(a->pos, Pf, a->pos);
+            //glm_vec2_add(a->pos, Pf, a->pos);
             a->v[0] = 0;
             a->v[1] = 0;
             return nearby[i];

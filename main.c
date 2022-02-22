@@ -76,11 +76,15 @@ int main()
         switch(event.type) {
             case ALLEGRO_EVENT_TIMER:
                 // game logic goes here.
+                //serviceActors();
+                //redraw = true;
+                break;
+
+            case ALLEGRO_EVENT_KEY_DOWN:
                 serviceActors();
                 redraw = true;
                 break;
 
-            case ALLEGRO_EVENT_KEY_DOWN:
             case ALLEGRO_EVENT_DISPLAY_CLOSE:
                 done = true;
                 break;
