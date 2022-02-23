@@ -82,7 +82,7 @@ Collider* moveActor(Actor* a) {
     //
     // (* = dot product)
 
-    vec2 Pa, Vf, Pcp, temp;
+    vec2 Pa, Vf, P0C, temp;
     float r;
 
     // calculate [global] Pa (attetmpted new position = P0 + v)
@@ -99,8 +99,9 @@ Collider* moveActor(Actor* a) {
     printf("moving %p at [%f, %f]\n", a, a->v[0], a->v[1]);
     //printf("filtered colliders into %p\n", &nearby);
     for (uint8_t i = 0; i < numNearby; ++i) {
-        // move Pa into 
+        // move Pa, P0 into collider frame
         glm_vec2_sub(Pa, nearby[i]->p1, Pa);
+        glm_vec2_sub(a->pos, nearby[i]->p1, P0C);
 
         // check tip distance
         r = fabs(glm_vec2_cross(Pa, nearby[i]->vec)) / glm_vec2_norm(nearby[i]->vec);
@@ -110,36 +111,53 @@ Collider* moveActor(Actor* a) {
             glm_vec2_normalize_to(a->v, temp);
             // calculate Vf (fixed velocity)
             glm_vec2_scale_as(a->v, (r - a->hitboxRad) * glm_vec2_norm(Pa) * glm_vec2_norm(nearby[i]->vec) / glm_vec2_dot(Pa, nearby[i]->vec), Vf);
-            // calculate Pc' projection of fixed position onto collider
-            
             // calculate d (local 1D coordinate of Pc' along collider)
-            
+            float d = glm_vec2_dot(P0C, nearby[i]->vec);
+            // determine if collision is on flat
+            if (d < 0) {
+                if (-d > a->hitboxRad) {
+                    // collision missed
+                    continue;
+                }
+                else {
+                    // collision at corner
+                    // TODO calculate better fixed position
+                    glm_vec2_copy(Vf, a->v);
+                }
+            }
+            else if (d > nearby[i]->len) {
+                if (d > nearby[i]->len + a->hitboxRad) {
+                    // collision missed
+                    continue;
+                }
+                else {
+                    // collision at corner
+                    // TODO calculate better fixed position
+                    glm_vec2_copy(Vf, a->v);
+                }
+            }
+            else {
+                // collision is on flat
+                    glm_vec2_copy(Vf, a->v);
+            }
             // TODO TEMP fix velocity (actually gotta make sure on flat first)
             glm_vec2_copy(Vf, a->v);
             /*a->v[0] = 0;
             a->v[1] = 0;*/
             //return nearby[i];
             
-        }
-        //printf("-found nearby: %p\n", nearby[i]);
+        } // (r <= a->hitboxRad)
+        
         // check distance from each endpoint point to v vector
 
-        // check distance from endpoint of v vector to collider line
         // check intersection of lines
 
-        // move Pa back into global
+        // move Pa back into global frame
         glm_vec2_add(Pa, nearby[i]->p1, Pa);
     }
     
-    /*
-    a->pos[0] += a->v[0];
-    a->pos[1] += a->v[1];
-    */
-
-    glm_vec2_add(a->pos, a->v, a->pos);
-    
-
-    //printf("moved an actor\n");
+    // move along fixed V
+    glm_vec2_add(a->pos, a->v, a->pos); // TODO do we really want to do this here?
 
     return NULL;
 }
