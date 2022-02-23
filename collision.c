@@ -68,6 +68,7 @@ Collider* moveActor(Actor* a) {
     // project that point onto the other line, if <R then collision is detected.  If that test passes
     // with no collision, check for intersection of two line segments.
 
+    // (all position vectors are moved into the collider's frame [origin at p1])
     // 1. calculate r = |Pa x C|/|C|
     //  - if r > R : DONE (no collision)
     //  - else : continue...
@@ -81,8 +82,10 @@ Collider* moveActor(Actor* a) {
     //
     // (* = dot product)
 
-    vec2 Pa, Pf, temp;
+    vec2 Pa, Vf, Pcp, temp;
     float r;
+
+    // calculate [global] Pa (attetmpted new position = P0 + v)
     glm_vec2_add(a->pos, a->v, Pa);
 
     drawVec(a->v, a->pos);
@@ -96,33 +99,45 @@ Collider* moveActor(Actor* a) {
     printf("moving %p at [%f, %f]\n", a, a->v[0], a->v[1]);
     //printf("filtered colliders into %p\n", &nearby);
     for (uint8_t i = 0; i < numNearby; ++i) {
+        // move Pa into 
+        glm_vec2_sub(Pa, nearby[i]->p1, Pa);
+
         // check tip distance
         r = fabs(glm_vec2_cross(Pa, nearby[i]->vec)) / glm_vec2_norm(nearby[i]->vec);
         if (r <= a->hitboxRad) {
             //printf("actor %p collided with %p (v is [%f, %f])\n", a, nearby[i], a->v[0], a->v[1]);
             // v tip collision detected
             glm_vec2_normalize_to(a->v, temp);
-            // calculate Pf (fixed position)
-            glm_vec2_scale_as(a->v, (r - a->hitboxRad) * glm_vec2_norm(Pa) * glm_vec2_norm(nearby[i]->vec) / glm_vec2_dot(Pa, nearby[i]->vec), Pf);
-            // TODO TEMP move (actually gotta make sure on flat first)
-            //glm_vec2_add(a->pos, Pf, a->pos);
-            a->v[0] = 0;
-            a->v[1] = 0;
-            return nearby[i];
+            // calculate Vf (fixed velocity)
+            glm_vec2_scale_as(a->v, (r - a->hitboxRad) * glm_vec2_norm(Pa) * glm_vec2_norm(nearby[i]->vec) / glm_vec2_dot(Pa, nearby[i]->vec), Vf);
+            // calculate Pc' projection of fixed position onto collider
+            
+            // calculate d (local 1D coordinate of Pc' along collider)
+            
+            // TODO TEMP fix velocity (actually gotta make sure on flat first)
+            glm_vec2_copy(Vf, a->v);
+            /*a->v[0] = 0;
+            a->v[1] = 0;*/
+            //return nearby[i];
+            
         }
         //printf("-found nearby: %p\n", nearby[i]);
         // check distance from each endpoint point to v vector
 
         // check distance from endpoint of v vector to collider line
         // check intersection of lines
+
+        // move Pa back into global
+        glm_vec2_add(Pa, nearby[i]->p1, Pa);
     }
     
     /*
     a->pos[0] += a->v[0];
     a->pos[1] += a->v[1];
     */
-    glm_vec2_add(a->pos, a->v, a->pos);
 
+    glm_vec2_add(a->pos, a->v, a->pos);
+    
 
     //printf("moved an actor\n");
 
