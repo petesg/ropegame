@@ -14,7 +14,8 @@ void initActors(void) {
     //tempActor->pos[0] = 160;
     //tempActor->pos[1] = 80;
     //tempActor->sprite.tile = 44;
-    tempActor->v[1] = -5;
+    tempActor->hitboxRad = 11;
+    tempActor->v[1] = -7;
 
     printf("added guy (%f, %f) with v=%f - %p\n", actors[0].pos[0], actors[0].pos[1], actors[0].v[1], &actors[0]);
     //printf("second guy tile is %d\n", actors[1].sprite.tile);
@@ -81,8 +82,8 @@ void initGuy(Actor* self) {
     self->sprite.tileWidth = 50;
     self->sprite.tileHeight = 37;
     self->sprite.tile = 55;
-    self->sprite.startTile = 55;
-    self->sprite.animLen = 4;
+    self->sprite.startTile = 0;
+    self->sprite.animLen = 3;
     self->sprite.frameTimer = 8;
     self->sprite.frameDur = 3;
 

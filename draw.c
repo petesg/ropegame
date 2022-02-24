@@ -48,10 +48,10 @@ void draw(void) {
     if (showHitboxes) {
         for (uint32_t i = 0; i < numColliders; ++i) {
             Collider* c = &colliders[i];
-            al_draw_line(c->p1[0], c->p1[1], c->p2[0], c->p2[1], al_map_rgb_f(1, 0, 0), 1);
+            al_draw_line(c->p1[0], c->p1[1], c->p2[0], c->p2[1], al_map_rgb_f(0, 1, 1), 1);
         }
         for (uint8_t i = 0; i < numVecs; ++i) {
-            al_draw_line(vecs[2*i][0], vecs[2*i][1], vecs[2*i+1][0], vecs[2*i+1][1], al_map_rgb_f(1, 0, 1), 2);
+            al_draw_line(vecs[2*i][0], vecs[2*i][1], vecs[2*i+1][0], vecs[2*i+1][1], al_map_rgb_f(i % 3 == 0, i % 3 == 1, 1), i % 3 == 2);
         }
         numVecs = 0;
     }
