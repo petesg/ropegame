@@ -8,7 +8,8 @@ Collider* nearby[256];
 void initCollision(void) {
     numColliders = 0;
     addCollider(50, 150, 125, 150);
-    //addCollider(125, 150, 200, 225);
+    addCollider(125, 150, 200, 225);
+    addCollider(200, 200, 300, 350);
 }
 
 Collider* addCollider(uint32_t x1, uint32_t y1, uint32_t x2, uint32_t y2) {

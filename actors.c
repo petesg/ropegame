@@ -82,8 +82,8 @@ void initGuy(Actor* self) {
     self->sprite.tileWidth = 50;
     self->sprite.tileHeight = 37;
     self->sprite.tile = 55;
-    self->sprite.startTile = 0;
-    self->sprite.animLen = 3;
+    self->sprite.startTile = 44;
+    self->sprite.animLen = 4;
     self->sprite.frameTimer = 8;
     self->sprite.frameDur = 3;
 
