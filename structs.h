@@ -3,7 +3,7 @@
 
 #include <stdint-gcc.h>
 
-#include <cglm/cglm.h>
+#include <cglm.h>
 
 #include <allegro5/allegro5.h>
 #include <allegro5/allegro_image.h>

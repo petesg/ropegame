@@ -1,0 +1,6 @@
+#ifndef COMPILESWITCH_H
+#define COMPILESWITCH_H
+
+#define CSW_MANUALSTEP 1
+
+#endif

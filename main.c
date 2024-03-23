@@ -7,6 +7,7 @@
 #include "actors.h"
 #include "draw.h"
 #include "collision.h"
+#include "compileswitch.h"
 
 ALLEGRO_TIMER* frameTimer;
 ALLEGRO_EVENT_QUEUE* queue;
@@ -76,15 +77,20 @@ int main()
         switch(event.type) {
             case ALLEGRO_EVENT_TIMER:
                 // game logic goes here.
-                /*serviceActors();
-                redraw = true;*/
+                #if !CSW_MANUALSTEP
+                serviceActors();
+                redraw = true;
+                #endif
                 break;
 
             case ALLEGRO_EVENT_KEY_DOWN:
+                    #if CSW_MANUALSTEP
                 serviceActors();
                 redraw = true;
-                /*actors[0].v[1] = -7;
-                actors[0].pos[1] = 100;*/
+                    #else
+                actors[0].v[1] = -7;
+                actors[0].pos[1] = 100;
+                    #endif
                 break;
 
             case ALLEGRO_EVENT_DISPLAY_CLOSE:

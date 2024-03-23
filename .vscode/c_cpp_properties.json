@@ -4,10 +4,9 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/**",
-                "/home/peter/Documents/random/clib/cglm/**"
+                "/home/petergfeld/Documents/clib/cglm/include/cglm"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/gcc",
             "cStandard": "gnu17",
             "cppStandard": "gnu++14",
             "intelliSenseMode": "linux-gcc-x64",
